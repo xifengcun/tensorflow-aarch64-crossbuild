@@ -13,7 +13,7 @@ cross build tensorflow for aarch64 ubuntu 16.04 in centos 7.4 host
 ```
    cym@allegro:~/project$ sudo apt install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
 ```
-
+   
 3. In tensorflow code dir, add following at the bottom of file WORKSPACE
 ```
     new_local_repository(
@@ -321,6 +321,11 @@ Configuration finished
 cym@allegro:~/project/tensorflow/test$ bazel build -c opt //tensorflow/examples/label_image --cpu=aarch64 --crosstool_top=//tools/aarch64_compiler:toolchain --host_crosstool_top=@bazel_tools//tools/cpp:toolchain --verbose_failures
 ```
 when find  "/external/nsync/BUILD:402:13: Configurable attribute "copts" doesn't match this configuration (would a default condition help?).", refer to  https://lengerrong.blogspot.nl/2017/09/fix-up-configurable-attribute-copts.html
+
+
+when prompt "can't find aarch64-linux-gnu/python2.7/pyconfig.h"
+download libpython2.7-dev:arm64 and extract it to get /usr/include/aarch64-linux-gnu/python2.7/pyconfig.h
+   in Ubuntu.
 
 9. copy bazel-bin/tensorflow/examples/label_image/label_image and 
 /home/cym/.cache/bazel/_bazel_cym/2ca964ca343a882262a4dc7d61ff9eb3/execroot/org_tensorflow/bazel-out/aarch64-linux-gnu-opt/bin/tensorflow/libtensorflow_framework.so to aarch64 device 
